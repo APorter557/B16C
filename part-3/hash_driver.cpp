@@ -31,5 +31,8 @@ int main(int agrc, char **argv)
 
     std::cout << "Retrieving 'Beans' results in the pointer value "
               << hash_table.get("Beans") << "\n";
+    
+    std::cout << "Hash value for 'Carambola' is: " << hash_table.hash("Carambola", 255) << "\n";
+    std::cout << "Hash value for 'alobmaraC' is: " << hash_table.hash("alobmaraC", 255) << "\n";
     return 0;
 }

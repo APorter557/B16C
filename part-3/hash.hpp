@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <vector>
+#include <string>
 
 #include "../part-1/list.hpp"
 
@@ -51,6 +52,22 @@ template <typename K, typename V, typename H> class HashTable
         std::cout << "Slot sizes: min: " << min;
         std::cout << ", max: " << max;
         std::cout << ", average: " << float(average) / _table.size() << '\n';
+    }
+
+    // Inserting question 8.3 code here - hash function for strings
+    uint32_t hash(const std::string& str, const uint32_t m){
+        uint32_t hash_value = 0;
+        uint32_t running_mult = 1; //Running multiplier
+        assert(m > 0);  // Ensures m is greater than 0 to avoid division by zero
+
+        for (int i = 0; i < str.size(); ++i) {
+            unsigned char c = str[str.size() - 1 - i];
+            hash_value = (hash_value + ((c % m) * running_mult)) % m;
+            running_mult = (running_mult * 256) % m; // Update the multiplier
+        }
+        
+        return hash_value;
+
     }
 
   private:
